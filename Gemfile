@@ -15,8 +15,8 @@ group :development, :test do
   gem  'sqlite3'
   gem 'byebug'
 end
-
 group :test do
+  gem 'guard'
   gem 'minitest-reporters'
   gem 'mini_backtrace'
   gem 'guard-minitest'
