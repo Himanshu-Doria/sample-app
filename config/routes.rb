@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   get 'static_pages/help'
   get 'static_pages/about'
   # random
+  get 'static_pages/contact'
 end
