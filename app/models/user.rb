@@ -8,13 +8,13 @@ class User < ActiveRecord::Base
 				uniqueness: { case_sensitive: false }
 	has_secure_password
 	validates :password, length: {minimum: 8}
-	#returns the hash digest of the given string
-	def User.digest(string)
+	#returns the hash digest of the given string .... self refers to the Class itself
+	def self.digest(string)
 		cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
 		BCrypt::Password.create(string, cost: cost)
 	end
-	# Returns a random remember me token
-	def User.new_token
+	# Returns a random remember me token ....... self refers to the Class itself
+	def self.new_token
 		SecureRandom.urlsafe_base64
 	end
 	# remebers a user in the database for the use in persistent sessions
