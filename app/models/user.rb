@@ -8,14 +8,22 @@ class User < ActiveRecord::Base
 				uniqueness: { case_sensitive: false }
 	has_secure_password
 	validates :password, length: {minimum: 8}
-	#returns the hash digest of the given string
-	def User.digest(string)
-		cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
-		BCrypt::Password.create(string, cost: cost)
-	end
-	# Returns a random remember me token
-	def User.new_token
-		SecureRandom.urlsafe_base64
+
+	# the below defination is an example of defining a class method, by the help of 
+	# singleton class defination. Following code is analogous to the defination that we provide while
+	# defining the singleton class of an object, where the methods in that (meta)class are accessible to 
+	# to that particular object only. The following code is analogous to that condition except instead of accessiblity to that object, they are accessible to
+	# the Class itself. These are the Class methods and their functionality is similar to other methods of definining like self.method_name or Class_name.method_name
+	class << self 
+		#returns the hash digest of the given string
+		def digest(string)
+			cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
+			BCrypt::Password.create(string, cost: cost)
+		end
+		# Returns a random remember me token
+		def new_token
+			SecureRandom.urlsafe_base64
+		end
 	end
 	# remebers a user in the database for the use in persistent sessions
 	def remember
