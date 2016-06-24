@@ -7,7 +7,11 @@ class User < ActiveRecord::Base
 				length: {maximum: 255},format: {with: VALID_EMAIL_REGEX},
 				uniqueness: { case_sensitive: false }
 	has_secure_password
-	validates :password, length: {minimum: 8}
+
+	#the pasword can be left blank in case of editing the user, however this would not be happening in case of signing up where
+	# has_secure_password enforces the presence validation upon object creation
+	validates :password, length: {minimum: 8}, allow_blank: true
+
 
 	# the below defination is an example of defining a class method, by the help of 
 	# singleton class defination. Following code is analogous to the defination that we provide while

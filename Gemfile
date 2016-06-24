@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 
 gem 'haml'
+gem 'faker', '~> 1.6', '>= 1.6.3'
+gem 'will_paginate', '~> 3.1'
+gem 'bootstrap-will_paginate', '~> 0.0.10'
 gem 'rails', '4.2.6'
 gem 'bcrypt'
 gem 'sass-rails', '~> 5.0'
