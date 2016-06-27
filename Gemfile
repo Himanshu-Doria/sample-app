@@ -14,6 +14,9 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
+gem 'pg'
+gem 'rails_12factor'
+gem 'puma'
 group :development, :test do
   gem 'web-console', '~> 2.0'
   gem 'spring'
@@ -26,9 +29,9 @@ group :test do
   gem 'mini_backtrace'
   gem 'guard-minitest'
 end
-group :production do 
-	gem 'pg'
-	gem 'rails_12factor'
-  gem 'puma'
+# group :production do 
+# 	gem 'pg'
+# 	gem 'rails_12factor'
+#   gem 'puma'
 end
 
