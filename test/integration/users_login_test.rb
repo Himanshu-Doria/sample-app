@@ -4,6 +4,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 	def setup
 		@user = users(:micheal)
 	end
+	
 	test "login with invalid credential" do
 		get login_path
 		assert_template 'sessions/new'
@@ -43,5 +44,5 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 	test "login without remembering" do
 		log_in_as(@user,remember_me: '0')
 		assert_nil cookies['remember_token']
-	end 
+	end
 end
