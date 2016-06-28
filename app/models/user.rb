@@ -39,10 +39,28 @@ class User < ActiveRecord::Base
 	def forget
 		update_attribute(:remember_digest, nil)
 	end
+	#checks for the user activation
+	def activated?
+		self.activated
+	end
 	#Returns true id the given token matches the digest
-	def authenticated?(remember_token)
-		return false if remember_digest.nil?
-		BCrypt::Password.new(remember_digest).is_password?(remember_token)
+	# we have now used the metaprogramming method , in which we would use the send method of the User object to explicitly called the 
+	# required method , whose name can be passed as argument to the this method, a form of function overloading
+	def authenticated?(attribute, token)
+		digest =  self.send("#{attribute}_digest")
+		return false if digest.nil?
+		BCrypt::Password.new(digest).is_password?(token)
+	end
+
+		#Activates an account
+	def activate
+		update_attribute(:activated, true)
+		update_attribute(:activated_at, Time.zone.now)
+	end
+
+	#Sends an activation email
+	def send_activation_email
+		UserMailer.account_activation(self).deliver_now
 	end
 	private 
 
