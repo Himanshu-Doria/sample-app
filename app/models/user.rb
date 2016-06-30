@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+	#makes the one-to-many associatin with the micrposts, also 
+	# the microposts are destoryed when their associated user is destoryed
+	has_many :microposts, dependent: :destroy
 	attr_accessor :remember_token, :activation_token, :reset_token
 	before_save :downcase_email
 	before_create :create_activation_digest
@@ -80,6 +83,13 @@ class User < ActiveRecord::Base
 		# this line checks if the reset_sent_at is earlier than 2 hours ago
 		reset_sent_at < 2.hours.ago
 	end
+	#returns the Microposts relating to the user
+
+	def feed 
+		Micropost.where("user_id = ?",id)
+	end
+
+
 	private 
 
 	def downcase_email
