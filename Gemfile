@@ -15,6 +15,9 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 gem 'pg'
+gem 'carrierwave', '~> 0.11.2' #used for file uploads
+gem 'mini_magick', '~> 4.5', '>= 4.5.1'  #used for image resizing
+gem 'fog', '~> 1.38'    #used for image upload in production mode
 gem 'rails_12factor'
 gem 'puma'
 gem 'mailcatcher'
